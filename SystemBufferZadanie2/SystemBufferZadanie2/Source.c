@@ -7,6 +7,7 @@ LPWSTR a = "";
 
 int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR pCmdLine, int nCmdShow)
 {
+	system("chcp 1251>null");
 	while (TRUE)
 	{
 		LPSTR Data = ClipboardOutputText();
@@ -19,48 +20,58 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR pCmdLin
 			{
 				kol += 8;
 			}
-			else if (Data[i] == "2")
-			{
-				kol += 3;
-			}
 			else
 			{
 				kol++;
 			}
 		}
-		TCHAR *str = calloc(kol, sizeof(LPSTR));
+		LPSTR str = calloc(kol, sizeof(LPSTR));
 		int j = 0;
-		for (int i = 0; i < 2*len; i++)
+		for (int i = 0; i < kol; i++)
 		{
-			if (Data[i] == 49)
-			{
-				str[j] = L'о\0';
-				j++;
-				str[j] = L'д\0';
-				j++;
-				str[j] = L'и\0';
-				j++;
-				str[j] = L'н\0';
-				j++;
-			}
-			else if(Data[i] == "2")
-			{
-				str[j] = 'д';
-				j++;
-				str[j] = 'в';
-				j++;
-				str[j] = 'а';
-				j++;
-			}
-			else
-			{
-				str[j] = Data[i];
-				j++;
-			}
+			str[j] = 'h';
+			j++;
 		}
+		//for (int i = 0; i < 2*len; i++)
+		//{
+		//	if (Data[i] == 49)
+		//	{
+		//		str[j] = 'о';
+		//		j++;
+		//		str[j] = '\0';
+		//		j++;
+		//		str[j] = 'д';
+		//		j++;
+		//		str[j] = '\0';
+		//		j++;
+		//		str[j] = 'и';
+		//		j++;
+		//		str[j] = '\0';
+		//		j++;
+		//		str[j] = 'н';
+		//		j++;
+		//		str[j] = '\0';
+		//		j++;
+		//	}
+		//	/*else if(Data[i] == "2")
+		//	{
+		//		str[j] = 'д';
+		//		j++;
+		//		str[j] = 'в';
+		//		j++;
+		//		str[j] = 'а';
+		//		j++;
+		//	}*/
+		//	else
+		//	{
+		//		str[j] = Data[i];
+		//		j++;
+		//	}
+		//}
 		if (strcmp(Data, a) != 0)
 		{
 			a = str;
+			int a = wcslen(str);
 			MessageBoxW(NULL, str, L"Внимание!!! Нарушение!!!", MB_OK | MB_ICONWARNING);
 			ClicboardInputText(str);
 		}
