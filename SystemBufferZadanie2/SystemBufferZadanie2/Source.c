@@ -10,69 +10,189 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR pCmdLin
 	system("chcp 1251>null");
 	while (TRUE)
 	{
-		LPSTR Data = ClipboardOutputText();
+		LPWSTR Data = ClipboardOutputText();
 		DWORD len;
 		len = wcslen(Data);
 		int kol = 0;
 		for (int i = 0; i < 2*len; i++)
 		{
+			if (Data[i] == 48)
+			{
+				kol += 4;
+			}
 			if (Data[i] == 49)
 			{
-				kol += 8;
+				kol += 4;
+			}
+			else if (Data[i] == 50)
+			{
+				kol += 3;
+			}
+			else if (Data[i] == 51)
+			{
+				kol+=3;
+			}
+			else if (Data[i] == 52)
+			{
+				kol+=6;
+			}
+			else if (Data[i] == 53)
+			{
+				kol+=4;
+			}
+			else if (Data[i] == 54)
+			{
+				kol+=5;
+			}
+			else if (Data[i] == 55)
+			{
+				kol+=4;
+			}
+			else if (Data[i] == 56)
+			{
+				kol+=6;
+			}
+			else if (Data[i] == 57)
+			{
+				kol+=5;
 			}
 			else
 			{
 				kol++;
 			}
 		}
-		LPSTR str = calloc(kol, sizeof(LPSTR));
+		LPWSTR str = calloc(kol, sizeof(LPSTR));
 		int j = 0;
-		for (int i = 0; i < kol; i++)
+		for (int i = 0; i < 2*len; i++)
 		{
-			str[j] = 'h';
-			j++;
+			if (Data[i] == 48)
+			{
+				str[j] = L'н';
+				j++;
+				str[j] = L'о';
+				j++;
+				str[j] = L'л';
+				j++;
+				str[j] = L'ь';
+				j++;
+			}
+			if (Data[i] == 49)
+			{
+				str[j] = L'о';
+				j++;
+				str[j] = L'д';
+				j++;
+				str[j] = L'и';
+				j++;
+				str[j] = L'н';
+				j++;
+			}
+			else if(Data[i] == 50)
+			{
+				str[j] = L'д';
+				j++;
+				str[j] = L'в';
+				j++;
+				str[j] = L'а';
+				j++;
+			}
+			else if (Data[i] == 51)
+			{
+				str[j] = L'т';
+				j++;
+				str[j] = L'р';
+				j++;
+				str[j] = L'и';
+				j++;
+			}
+			else if (Data[i] == 52)
+			{
+				str[j] = L'ч';
+				j++;
+				str[j] = L'е';
+				j++;
+				str[j] = L'т';
+				j++;
+				str[j] = L'ы';
+				j++;
+				str[j] = L'р';
+				j++;
+				str[j] = L'и';
+				j++;
+			}
+			else if (Data[i] == 53)
+			{
+				str[j] = L'п';
+				j++;
+				str[j] = L'€';
+				j++;
+				str[j] = L'т';
+				j++;
+				str[j] = L'ь';
+				j++;
+			}
+			else if (Data[i] == 54)
+			{
+				str[j] = L'ш';
+				j++;
+				str[j] = L'е';
+				j++;
+				str[j] = L'с';
+				j++;
+				str[j] = L'т';
+				j++;
+				str[j] = L'ь';
+				j++;
+			}
+			else if (Data[i] == 55)
+			{
+				str[j] = L'с';
+				j++;
+				str[j] = L'е';
+				j++;
+				str[j] = L'м';
+				j++;
+				str[j] = L'ь';
+				j++;
+			}
+			else if (Data[i] == 56)
+			{
+				str[j] = L'в';
+				j++;
+				str[j] = L'о';
+				j++;
+				str[j] = L'с';
+				j++;
+				str[j] = L'е';
+				j++;
+				str[j] = L'м';
+				j++;
+				str[j] = L'ь';
+				j++;
+			}
+			else if (Data[i] == 57)
+			{
+				str[j] = L'д';
+				j++;
+				str[j] = L'в';
+				j++;
+				str[j] = L'€';
+				j++;
+				str[j] = L'т';
+				j++;
+				str[j] = L'ь';
+				j++;
+			}
+			else
+			{
+				str[j] = Data[i];
+				j++;
+			}
 		}
-		//for (int i = 0; i < 2*len; i++)
-		//{
-		//	if (Data[i] == 49)
-		//	{
-		//		str[j] = 'о';
-		//		j++;
-		//		str[j] = '\0';
-		//		j++;
-		//		str[j] = 'д';
-		//		j++;
-		//		str[j] = '\0';
-		//		j++;
-		//		str[j] = 'и';
-		//		j++;
-		//		str[j] = '\0';
-		//		j++;
-		//		str[j] = 'н';
-		//		j++;
-		//		str[j] = '\0';
-		//		j++;
-		//	}
-		//	/*else if(Data[i] == "2")
-		//	{
-		//		str[j] = 'д';
-		//		j++;
-		//		str[j] = 'в';
-		//		j++;
-		//		str[j] = 'а';
-		//		j++;
-		//	}*/
-		//	else
-		//	{
-		//		str[j] = Data[i];
-		//		j++;
-		//	}
-		//}
 		if (strcmp(Data, a) != 0)
 		{
 			a = str;
-			int a = wcslen(str);
-			MessageBoxW(NULL, str, L"¬нимание!!! Ќарушение!!!", MB_OK | MB_ICONWARNING);
+			int k = wcslen(str);
 			ClicboardInputText(str);
 		}
 		Sleep(1000);
