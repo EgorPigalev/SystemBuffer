@@ -54,7 +54,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR pCmdLin
 			}
 			else if (Data[i] == 57)
 			{
-				kol+=5;
+				kol+=6;
 			}
 			else
 			{
@@ -117,7 +117,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR pCmdLin
 				j++;
 				str[j] = L'ð';
 				j++;
-				str[j] = L'è';
+				str[j] = L'å';
 				j++;
 			}
 			else if (Data[i] == 53)
@@ -173,6 +173,8 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR pCmdLin
 			else if (Data[i] == 57)
 			{
 				str[j] = L'ä';
+				j++;
+				str[j] = L'å';
 				j++;
 				str[j] = L'â';
 				j++;
